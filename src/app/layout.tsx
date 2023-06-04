@@ -26,6 +26,17 @@ export default function RootLayout({children}: { children: React.ReactNode }) {
             <meta name="twitter:description"
                   content="As a hacker who's passionate about development and build, I have been building digital products for more than 7 years."/>
             <meta name="twitter:image" content="https://barisceviz.com/profile.jpeg"/>
+
+            <script type="application/ld+json">
+                {JSON.stringify({
+                    "@context": "https://schema.org",
+                    "@type": "Organization",
+                    "url": "https://barisceviz.com",
+                    "name": "Baris Ceviz",
+                    "description": "As a hacker who's passionate about development and build, I have been building digital products for more than 7 years.",
+                    "image": "https://barisceviz.com/profile.jpeg"
+                })}
+            </script>
         </head>
         <body className="flex flex-col sm:min-h-screen">
         <Header/>

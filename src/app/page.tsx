@@ -1,7 +1,6 @@
 import React from "react";
 import {BsGithub, BsInstagram, BsLinkedin, BsMedium, BsSpotify, BsTwitter, BsYoutube} from "react-icons/bs";
 import {SiLichess, SiSoundcloud, SiUpwork} from "react-icons/si";
-import Image from "next/image";
 
 export const runtime = 'nodejs';
 
@@ -71,11 +70,9 @@ const Hero = () => {
                 </div>
             </div>
             <div className="flex justify-center items-center p-8">
-                <Image
+                <img
                     src="/profile.jpeg"
-                    alt="Baris Ceviz"
-                    width={250}
-                    height={250}
+                    alt="hero"
                     className="rounded-full"/>
             </div>
         </div>

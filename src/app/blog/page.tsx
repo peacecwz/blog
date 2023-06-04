@@ -2,7 +2,6 @@
 import {FC, useEffect, useState} from "react";
 import {MediumFeed, MediumFeedItem} from "@web/services/feed.service";
 import {useRouter} from "next/navigation";
-import Image from "next/image";
 
 export const runtime = 'nodejs';
 
@@ -13,12 +12,10 @@ const Post: FC<{ data: MediumFeedItem }> = ({data}) => {
         <div
             className="flex flex-col max-w-sm bg-white px-6 py-6 rounded-xl shadow-lg transform hover:scale-105 transition duration-500">
             <div className="relative aspect-w-16 aspect-h-9">
-                <Image
+                <img
                     className="object-cover w-full h-full rounded-xl"
                     src={data.imageUrl}
                     alt={data.title}
-                    width={250}
-                    height={140}
                 />
             </div>
             <h1 className="mt-4 text-gray-800 text-2xl font-bold cursor-pointer">

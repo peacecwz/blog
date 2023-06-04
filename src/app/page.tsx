@@ -2,6 +2,8 @@ import React from "react";
 import {BsGithub, BsInstagram, BsLinkedin, BsMedium, BsSpotify, BsTwitter, BsYoutube} from "react-icons/bs";
 import {SiLichess, SiSoundcloud, SiUpwork} from "react-icons/si";
 
+export const runtime = 'edge';
+
 const Hero = () => {
     return (
         <div className="flex flex-col-reverse justify-center items-center self-center">

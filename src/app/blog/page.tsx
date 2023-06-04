@@ -1,3 +1,6 @@
+
+export const runtime = 'edge';
+
 const Post = () => {
     return (
         <div

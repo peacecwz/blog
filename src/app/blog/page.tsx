@@ -1,73 +1,117 @@
+"use client";
+import {FC, useEffect, useState} from "react";
+import {MediumFeed, MediumFeedItem} from "@web/services/feed.service";
+import {useRouter} from "next/navigation";
 
 export const runtime = 'nodejs';
 
-const Post = () => {
+const Post: FC<{ data: MediumFeedItem }> = ({data}) => {
+    const {push} = useRouter();
+
     return (
         <div
-            className="max-w-sm bg-white px-6 pt-6 pb-2 rounded-xl shadow-lg transform hover:scale-105 transition duration-500">
-            <h3 className="mb-3 text-xl font-bold text-indigo-600">Beginner Friendly</h3>
-            <div className="relative">
-                <img className="w-full rounded-xl"
-                     src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
-                     alt="Colors"/>
-                <p className="absolute top-0 bg-yellow-300 text-gray-800 font-semibold py-1 px-3 rounded-br-lg rounded-tl-lg">FREE</p>
+            className="flex flex-col max-w-sm bg-white px-6 py-6 rounded-xl shadow-lg transform hover:scale-105 transition duration-500">
+            <div className="relative aspect-w-16 aspect-h-9">
+                <img
+                    className="object-cover w-full h-full rounded-xl"
+                    src={data.imageUrl}
+                    alt={data.title}
+                />
             </div>
-            <h1 className="mt-4 text-gray-800 text-2xl font-bold cursor-pointer">Javascript Bootcamp for
-                Absolute Beginners</h1>
-            <div className="my-4">
-                <div className="flex space-x-1 items-center">
-                                <span>
-                                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-indigo-600 mb-1.5"
-                                       fill="none"
-                                       viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-                                          d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                  </svg>
-                                </span>
-                    <p>1:34:23 Minutes</p>
+            <h1 className="mt-4 text-gray-800 text-2xl font-bold cursor-pointer">
+                {data.title}
+            </h1>
+            <div className="my-4 space-y-1">
+                <div className="flex space-x-1">
+                  <span>
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-6 w-6 text-indigo-600 mb-1.5"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                    >
+                      <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
+                    </svg>
+                  </span>
+                    <p>{data.publishedDate}</p>
                 </div>
-                <div className="flex space-x-1 items-center">
-                                <span>
-                                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-indigo-600 mb-1.5"
-                                       fill="none"
-                                       viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-                                          d="M16 4v12l-4-2-4 2V4M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                                  </svg>
-                                </span>
-                    <p>3 Parts</p>
+                <div className="flex space-x-1">
+                      <span>
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-6 w-6 text-indigo-600 mb-1.5"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                        >
+                          <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M16 4v12l-4-2-4 2V4M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                          />
+                        </svg>
+                      </span>
+                    <p>{data.tags.join(", ")}</p>
                 </div>
-                <div className="flex space-x-1 items-center">
-                                <span>
-                                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-indigo-600 mb-1.5"
-                                       fill="none"
-                                       viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-                                          d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
-                                  </svg>
-                                </span>
-                    <p>Vanilla JS</p>
+                <div className="flex space-x-1">
+                      <span>
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-6 w-6 text-indigo-600 mb-1.5"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                        >
+                          <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+                          />
+                        </svg>
+                      </span>
+                    <p>{data.author}</p>
                 </div>
-                <button
-                    className="mt-4 text-xl w-full text-white bg-indigo-600 py-2 rounded-xl shadow-lg">Buy
-                    Lesson
-                </button>
             </div>
+            <button
+                onClick={() => push(data.link)}
+                className="mt-auto text-xl w-full text-white bg-indigo-600 py-2 rounded-xl shadow-lg"
+            >
+                Read More
+            </button>
         </div>
-    )
-}
+    );
+};
+
 
 export default function Home() {
+    const [posts, setPosts] = useState<MediumFeedItem[]>();
+
+    useEffect(() => {
+        const getFeed = async () => {
+            const response = await fetch(`/api/feed`).then(res => res.json()) as MediumFeed;
+
+            setPosts(response.posts);
+        }
+
+        getFeed();
+    }, []);
+
     return (
         <div>
             <div
-                className="min-h-screen bg-gradient-to-tr from-red-300 to-yellow-200 flex justify-center items-center py-20">
+                className="min-h-screen bg-gray-50 flex justify-center items-center py-20">
                 <div className="md:px-4 md:grid md:grid-cols-2 lg:grid-cols-3 gap-5 space-y-4 md:space-y-0">
-                    <Post/>
-                    <Post/>
-                    <Post/>
-                    <Post/>
-                    <Post/>
+                    {posts?.map((post, index) => (
+                        <Post key={index} data={post}/>
+                    ))}
                 </div>
             </div>
         </div>

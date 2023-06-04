@@ -2,7 +2,7 @@ import React from "react";
 import {BsGithub, BsInstagram, BsLinkedin, BsMedium, BsSpotify, BsTwitter, BsYoutube} from "react-icons/bs";
 import {SiLichess, SiSoundcloud, SiUpwork} from "react-icons/si";
 
-export const runtime = 'edge';
+export const runtime = 'nodejs';
 
 const Hero = () => {
     return (

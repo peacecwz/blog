@@ -3,6 +3,7 @@ import {FC, useEffect, useState} from "react";
 import {MediumFeed, MediumFeedItem} from "@web/services/feed.service";
 import {useRouter} from "next/navigation";
 import Image from "next/image";
+import Link from "next/link";
 
 export const runtime = 'nodejs';
 
@@ -25,9 +26,11 @@ const Post: FC<{ data: MediumFeedItem }> = ({data}) => {
                     loading='lazy'
                 />
             </div>
-            <h1 className="mt-4 text-gray-800 text-2xl font-bold cursor-pointer">
-                {data.title}
-            </h1>
+            <Link target={"_blank"} href={data.link}>
+                <h1 className="mt-4 text-gray-800 text-2xl font-bold">
+                    {data.title}
+                </h1>
+            </Link>
             <div className="my-4 space-y-1">
                 <div className="flex space-x-1">
                   <span>
@@ -46,7 +49,7 @@ const Post: FC<{ data: MediumFeedItem }> = ({data}) => {
                       />
                     </svg>
                   </span>
-                    <p>{data.publishedDate}</p>
+                    <p>{new Date(data.publishedDate).toDateString()}</p>
                 </div>
                 <div className="flex space-x-1">
                       <span>
@@ -87,12 +90,13 @@ const Post: FC<{ data: MediumFeedItem }> = ({data}) => {
                     <p>{data.author}</p>
                 </div>
             </div>
-            <button
-                onClick={() => push(data.link)}
-                className="mt-auto text-xl w-full text-white bg-indigo-600 py-2 rounded-xl shadow-lg"
+            <Link
+                target={"_blank"}
+                href={data.link}
+                className="mt-auto text-xl text-center w-full text-white bg-indigo-600 py-2 rounded-xl shadow-lg"
             >
                 Read More
-            </button>
+            </Link>
         </div>
     );
 };

@@ -1,6 +1,8 @@
 import './globals.css'
 import {Inter} from 'next/font/google'
 import Header from "@web/app/components/header.component";
+import React from "react";
+import {Footer} from "@web/app/components/footer.component";
 
 const inter = Inter({subsets: ['latin']})
 
@@ -29,7 +31,10 @@ export default function RootLayout({children}: { children: React.ReactNode }) {
         </head>
         <body className="flex flex-col sm:min-h-screen">
         <Header/>
-        {children}
+        <main className="py-6">
+            {children}
+        </main>
+        <Footer/>
         </body>
         </html>
     )

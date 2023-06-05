@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import {BsGithub, BsInstagram, BsLinkedin, BsMedium, BsSpotify, BsTwitter, BsYoutube} from "react-icons/bs";
 import {SiLichess, SiSoundcloud, SiUpwork} from "react-icons/si";

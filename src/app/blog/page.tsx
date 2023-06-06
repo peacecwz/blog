@@ -109,9 +109,9 @@ export default function Home() {
 
     useEffect(() => {
         const getFeed = async () => {
-            const response = await fetch(`/api/feed`).then(res => res.json()) as MediumFeed;
+            const response = await fetch(`/api/feed`).then(res => res.json()) as MediumFeedItem[];
 
-            setPosts(response.posts);
+            setPosts(response);
         }
 
         getFeed();

@@ -1,6 +1,4 @@
-import Image from "next/image";
-
-export default function Custom404() {
+export default function NotFoundPage() {
     return <div style={{
         display: 'flex',
         flexDirection: 'column',

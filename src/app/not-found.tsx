@@ -1,11 +1,13 @@
 export default function NotFoundPage() {
-    return <div style={{
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '100vh',
-    }}>
+    return <div
+        style={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '100vh',
+        }}
+    >
         <p>
             If you only knew the power
         </p>
@@ -28,7 +30,9 @@ export default function NotFoundPage() {
                 width: '100%',
             }}
             placeholder="blur"
-            src="/404.gif" alt="404 Page - Baris Ceviz"/>
+            src="/404.gif"
+            alt="404 Page - Baris Ceviz"
+        />
 
         <a href='https://www.youtube.com/watch?v=_lOT2p_FCvA' target='_blank' rel='noreferrer'>
             <p>Search your feelings, you know it to be true.</p>

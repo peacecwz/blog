@@ -30,7 +30,7 @@ export default function NotFoundPage() {
                 width: '100%',
             }}
             placeholder="blur"
-            src="/404.gif"
+            src="/star-wars-not-found.gif"
             alt="404 Page - Baris Ceviz"
         />
 

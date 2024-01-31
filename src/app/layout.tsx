@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import Header from "@web/app/components/header.component";
 import React from "react";
 import { Footer } from "@web/app/components/footer.component";
+import Script from 'next/script';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -30,10 +31,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <meta name="twitter:image" content="https://barisceviz.com/profile.jpeg" />
 
                 <link rel="stylesheet" type="text/css" href="https://widgets.superpeer.com/widget.css"></link>
-                <script src="https://widgets.superpeer.com/widget.js"></script>
-                <script dangerouslySetInnerHTML={{
-                    __html: `window.addEventListener("load", () => {new Superpeer.Widget({embed:{type:"slide-in"},launcher:{type:"superpeer-logo",options:{}},config:{username:"peacecwz",serviceSlug:""}})})`
-                }}></script>
+                <Script src="https://widgets.superpeer.com/widget.js" />
+                <Script id='superpeer-widget'>
+                    {`window.addEventListener("load", () => {new Superpeer.Widget({embed:{type:"slide-in"},launcher:{type:"superpeer-logo",options:{}},config:{username:"peacecwz",serviceSlug:""}})})`}
+                </Script>
             </head>
             <body className="flex flex-col sm:min-h-screen">
                 <Header />

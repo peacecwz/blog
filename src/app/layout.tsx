@@ -4,6 +4,7 @@ import Header from "@web/app/components/header.component";
 import React from "react";
 import { Footer } from "@web/app/components/footer.component";
 import Script from 'next/script';
+import Sponsored from './sponsored';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -41,6 +42,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <main className="py-6">
                     {children}
                 </main>
+                <Sponsored />
                 <Footer />
             </body>
         </html>

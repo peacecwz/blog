@@ -4,7 +4,10 @@ import Header from "@web/app/components/header.component";
 import React from "react";
 import { Footer } from "@web/app/components/footer.component";
 import Script from 'next/script';
-import Sponsored from './sponsored';
+import dynamic from 'next/dynamic';
+
+// Import the SponsoredAd component with dynamic import to ensure it only runs on the client side
+const SponsoredAd = dynamic(() => import('./components/SponsoredAd'), { ssr: false });
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -42,7 +45,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <main className="py-6">
                     {children}
                 </main>
-                <Sponsored />
+                <SponsoredAd />
                 <Footer />
             </body>
         </html>

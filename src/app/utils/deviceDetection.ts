@@ -1,5 +1,7 @@
 'use client';
 
+import { useEffect, useState } from 'react';
+
 // Device type enum
 export enum DeviceType {
   MOBILE = 'mobile',
@@ -8,7 +10,8 @@ export enum DeviceType {
 }
 
 // Function to detect device type based on user agent and screen size
-export function useDeviceDetection(): DeviceType {
+// This is a regular function, not a hook
+export function detectDeviceType(): DeviceType {
   // This can only run on the client side
   if (typeof window === 'undefined') {
     return DeviceType.DESKTOP; // Default for SSR
@@ -34,10 +37,28 @@ export function useDeviceDetection(): DeviceType {
 
 // Hook to get device type and handle window resize
 export function useDeviceType(): DeviceType {
-  // This can only run on the client side
-  if (typeof window === 'undefined') {
-    return DeviceType.DESKTOP; // Default for SSR
-  }
-
-  return useDeviceDetection();
+  // Always initialize with a default value
+  const [deviceType, setDeviceType] = useState<DeviceType>(DeviceType.DESKTOP);
+  
+  // Use effect to update the device type after mount and on resize
+  useEffect(() => {
+    // Only run on client
+    if (typeof window === 'undefined') return;
+    
+    // Set the initial device type
+    setDeviceType(detectDeviceType());
+    
+    // Create the resize handler
+    const handleResize = () => {
+      setDeviceType(detectDeviceType());
+    };
+    
+    // Add resize listener
+    window.addEventListener('resize', handleResize);
+    
+    // Clean up
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+  
+  return deviceType;
 }

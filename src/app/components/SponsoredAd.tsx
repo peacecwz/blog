@@ -29,30 +29,22 @@ const adConfigs: Record<DeviceType, AdConfig> = {
 };
 
 export default function SponsoredAd() {
-  // Use state to handle client-side rendering
-  const [deviceType, setDeviceType] = useState<DeviceType>(DeviceType.DESKTOP);
+  // Use our hook to get the device type
+  const deviceType = useDeviceType();
+  
+  // State to confirm client-side rendering
   const [isClient, setIsClient] = useState(false);
 
-  // Effect to update device type after mount
+  // Run once after mount to confirm we're on client
   useEffect(() => {
     setIsClient(true);
-    const detectDeviceType = useDeviceType();
-    setDeviceType(detectDeviceType);
-
-    // Handle window resize
-    const handleResize = () => {
-      setDeviceType(useDeviceType());
-    };
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
   }, []);
-
-  // Get the appropriate ad configuration
-  const adConfig = adConfigs[deviceType];
 
   // Don't render anything during SSR to prevent hydration mismatch
   if (!isClient) return null;
+
+  // Get the appropriate ad configuration
+  const adConfig = adConfigs[deviceType];
 
   return (
     <div className="fixed bottom-5 right-5 bg-white rounded-lg shadow-lg p-4 z-50 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
